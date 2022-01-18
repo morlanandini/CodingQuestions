@@ -1,0 +1,53 @@
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+
+https://leetcode.com/problems/two-sum/
+
+
+
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+     Scanner sc=new Scanner(System.in);
+     int n=sc.nextInt();
+     int[] nums=new int[n];
+     int i;
+     for(i=0;i<n;i++)
+     {
+         nums[i]=sc.nextInt();
+     }
+     int target=sc.nextInt();
+ 
+        int[] a=new int[2];
+        
+        HashMap<Integer,Integer> h = new HashMap<Integer,Integer>();
+        
+        for(i=0;i<nums.length;i++)
+        {
+            if(h.containsKey(target-nums[i]))
+            {
+                a[0]=i;
+                a[1]=h.get(target-nums[i]);
+                break;
+            }
+            else
+            {
+                h.put(nums[i],i);
+            }
+        }
+           System.out.println(a[0]+" "+a[1]);
+      
+        
+    }
+}
+     
+     
+     
+     
+     
+
+
