@@ -1,0 +1,65 @@
+https://leetcode.com/problems/find-the-duplicate-number/
+
+
+Using Hashset (extra space no modification of array)
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+       HashSet<Integer> h = new HashSet<Integer>();
+       int n = 0;
+       for(int i=0; i< nums.length;i++) {
+        if(h.contains(nums[i])){
+            n = nums[i];
+            break;
+        }
+        else h.add(nums[i]);
+       }
+       return n;
+    }
+}
+
+Manipulation of given array ( no extra space )
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int c =0;
+        for(int i=0;i< nums.length;i++) {
+
+            if(nums[Math.abs(nums[i])]>0)
+            {
+                nums[Math.abs(nums[i])] = nums[Math.abs(nums[i])] * -1; 
+            }
+            else {
+                c = Math.abs(nums[i]);
+                break;
+            }
+
+        }
+        return c;
+    
+    }
+}
+
+
+Floyd's Tortoise and Hare Without a Linked List 
+class Solution {
+    public int findDuplicate(int[] nums) {
+
+        int slow = nums[0];
+        int fast = nums[0];
+
+        while(true){
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+            if(slow==fast)
+            break;
+        }
+        slow = nums[0];
+        while(slow!=fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return fast;
+    
+    }
+}
